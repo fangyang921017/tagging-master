@@ -1,6 +1,7 @@
 import { fabric } from 'fabric';
 import { Canvas } from 'fabric/fabric-impl';
-import { DrawType, TaggingData, RectJson, EllipseJson, PolygonJson, CircleJson, DotJson, NoneJson } from './types';
+import { DrawType, TaggingData } from './types';
+import { EventBus } from './EventBus';
 export * from './types';
 export declare type ToolOption = {
     name: string;
@@ -11,10 +12,11 @@ export declare type TaggingMasterOptions = {
     canvasId: string;
     tools?: Array<ToolOption>;
 };
-export declare class TaggingMaster {
+export declare class TaggingMaster extends EventBus {
     canvas: Canvas;
     private _currentToolName;
     private _currentImgObject;
+    private _panzoomHandle;
     private _tools;
     private readonly _width;
     private readonly _height;
@@ -30,11 +32,13 @@ export declare class TaggingMaster {
     private _disableSelectGroup;
     private _bindTaggingHandle;
     private _bindPanzoomHandle;
+    zoomOut(): void;
+    zoomIn(): void;
     loadImage(url: string): Promise<fabric.Image>;
     setTool(toolName: string): void;
     getCurrentToolName(): string;
     loadFromTaggingData(taggingData: TaggingData): Promise<void>;
-    getTaggingData(): (RectJson | EllipseJson | PolygonJson | CircleJson | DotJson | NoneJson)[];
+    getTaggingData(): import("./types").GraphicJson[];
     showAll(): void;
     hideAll(): void;
     show(name: string): void;

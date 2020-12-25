@@ -24,12 +24,18 @@ export class DotImpl extends BaseObjectImpl {
 
     const { x, y } = this.taggingMaster.canvas.getPointer(e.e);
 
-    this.taggingMaster.canvas.add(new fabric.Circle({
+    const dot = new fabric.Circle({
       name: 'dot:' + this.name,
       left: x,
       top: y,
       ...dotCommonOptions
-    }));
+    })
+
+    this.taggingMaster.canvas.add(dot);
+
+    this.implObjectForDots.push(dot)
+
+    this.taggingMaster.emit('tagging:finish', this.name)
   };
 
   public mousemove () {}
@@ -63,6 +69,7 @@ export class DotImpl extends BaseObjectImpl {
       }
 
       this.taggingMaster.canvas.add(po);
+      this.implObjectForDots.push(po);
     })
   }
 }

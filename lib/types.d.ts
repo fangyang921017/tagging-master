@@ -8,11 +8,11 @@ export declare enum DrawType {
     Dot = "dot"
 }
 export declare type MouseEventType = 'mousedown' | 'mousemove' | 'mouseup';
-export declare abstract class IbaseObjectImpl {
-    abstract mousedown(e: IEvent): void;
-    abstract mousemove(e: IEvent): void;
-    abstract mouseup(e: IEvent): void;
-    abstract clear(): void;
+export interface IbaseObject {
+    mousedown(e: IEvent): void;
+    mousemove(e: IEvent): void;
+    mouseup(e: IEvent): void;
+    clear(): void;
 }
 export interface RectJson {
     name: string;
@@ -62,7 +62,8 @@ export interface NoneJson {
     type: DrawType.None;
     position: {};
 }
+export declare type GraphicJson = RectJson | EllipseJson | PolygonJson | CircleJson | DotJson | NoneJson;
 export interface TaggingData {
     imgUrl: string;
-    tagObjects: Array<RectJson | EllipseJson | PolygonJson | CircleJson | DotJson | NoneJson>;
+    tagObjects: Array<GraphicJson>;
 }

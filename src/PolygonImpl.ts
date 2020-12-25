@@ -104,6 +104,7 @@ export class PolygonImpl extends BaseObjectImpl {
       // perPixelTargetFind: true
     });
     this.taggingMaster.canvas.add(this.implObject);
+    this.taggingMaster.emit('tagging:finish', this.name)
     this.implObject.set('data', { initLeft: this.implObject.left, initTop: this.implObject.top })
 
     this.activeLine = null;

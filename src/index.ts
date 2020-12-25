@@ -12,6 +12,7 @@ import {
 } from './types';
 import { TaggingHandle } from './TaggingHandle';
 import { PanzoomHandle } from './PanzoomHandle';
+import { EventBus } from './EventBus';
 export * from './types';
 
 export type ToolOption = {
@@ -25,10 +26,11 @@ export type TaggingMasterOptions = {
   tools?: Array<ToolOption>;
 }
 
-export class TaggingMaster {
+export class TaggingMaster extends EventBus {
   canvas: Canvas;
   private _currentToolName = '';
   private _currentImgObject: Image | null = null;
+  private _panzoomHandle: PanzoomHandle | null = null;
   private _tools: ToolOption[];
   private readonly _width: number;
   private readonly _height: number;
@@ -38,6 +40,7 @@ export class TaggingMaster {
   private readonly _viewMode: boolean;
 
   constructor (options: TaggingMasterOptions) {
+    super()
     const { canvasId, tools } = options;
     this._enableTagging = !!tools;
     this._tools = tools || [];
@@ -113,12 +116,21 @@ export class TaggingMaster {
   }
 
   private _bindPanzoomHandle () {
-    const panzoomHandle = new PanzoomHandle(this);
-    // 平移和缩放
-    this.canvas.on('mouse:down', panzoomHandle.mousedown.bind(panzoomHandle));
-    this.canvas.on('mouse:move', panzoomHandle.mousemove.bind(panzoomHandle));
-    this.canvas.on('mouse:up', panzoomHandle.mouseup.bind(panzoomHandle));
-    this.canvas.on('mouse:wheel', panzoomHandle.mousewheel.bind(panzoomHandle));
+    this._panzoomHandle = new PanzoomHandle(this);
+  }
+
+  // 缩小
+  zoomOut () {
+    if (this._panzoomHandle) {
+      this._panzoomHandle.zoomOut()
+    }
+  }
+
+  // 放大
+  zoomIn () {
+    if (this._panzoomHandle) {
+      this._panzoomHandle.zoomIn()
+    }
   }
 
   loadImage (url: string) {

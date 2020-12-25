@@ -55,6 +55,8 @@ export class TaggingHandle {
       (new this._implClassMap[obj.type](this._taggingMaster, obj.name) as BaseObjectImpl)
         .loadJson(obj, offset, this._taggingMaster.isViewMode())
     }
+
+    this._taggingMaster.emit('tagging:finish', obj.name)
   }
 
   reset () {

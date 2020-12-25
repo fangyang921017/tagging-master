@@ -1,7 +1,8 @@
-import { IbaseObjectImpl, TaggingMaster, RectJson, EllipseJson, PolygonJson, CircleJson, DotJson, NoneJson } from '.';
+import { IbaseObject, TaggingMaster, RectJson, EllipseJson, PolygonJson, CircleJson, DotJson, NoneJson } from '.';
 import { Object as ImplObject, IEvent } from 'fabric/fabric-impl';
-export declare abstract class BaseObjectImpl implements IbaseObjectImpl {
+export declare abstract class BaseObjectImpl implements IbaseObject {
     protected implObject: ImplObject | null;
+    protected implObjectForDots: ImplObject[];
     protected taggingMaster: TaggingMaster;
     protected name: string;
     constructor(taggingMaster: TaggingMaster, name: string);

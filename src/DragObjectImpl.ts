@@ -5,6 +5,7 @@ export abstract class DragObjectImpl extends BaseObjectImpl {
   protected mouseFrom = { x: 0, y: 0 };
   protected mouseTo = { x: 0, y: 0 };
   protected isDrawing = false;
+  protected hasMoved = false;
 
   public mousedown (e: IEvent) {
     const mouseEvent = e.e as MouseEvent;
@@ -19,6 +20,7 @@ export abstract class DragObjectImpl extends BaseObjectImpl {
     if (mouseEvent.ctrlKey === true) return
 
     if (this.isDrawing) {
+      this.hasMoved = true;
       this.mouseTo = this.taggingMaster.canvas.getPointer(mouseEvent);
       const left = this.mouseTo.x > this.mouseFrom.x ? this.mouseFrom.x : this.mouseTo.x;
       const top = this.mouseTo.y > this.mouseFrom.y ? this.mouseFrom.y : this.mouseTo.y;
@@ -31,7 +33,11 @@ export abstract class DragObjectImpl extends BaseObjectImpl {
   }
 
   public mouseup () {
+    if (this.isDrawing && this.hasMoved) {
+      this.taggingMaster.emit('tagging:finish', this.name)
+    }
     this.isDrawing = false;
+    this.hasMoved = false;
   }
 
   public abstract draw (left: number, top: number, width: number, height: number, mouseFrom?: Point, mouseTo?: Point): void

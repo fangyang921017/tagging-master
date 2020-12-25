@@ -10,6 +10,7 @@ export declare abstract class DragObjectImpl extends BaseObjectImpl {
         y: number;
     };
     protected isDrawing: boolean;
+    protected hasMoved: boolean;
     mousedown(e: IEvent): void;
     mousemove(e: IEvent): void;
     mouseup(): void;

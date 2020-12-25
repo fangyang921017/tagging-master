@@ -1,6 +1,6 @@
 {
   "name": "tagging-master",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Label graphics in pictures",
   "main": "./lib/bundle.min.js",
   "typings": "./lib/index.d.ts",
@@ -10,7 +10,7 @@
   },
   "keywords": [],
   "author": "ivorfang",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-json": "^4.1.0",
     "@types/fabric": "^3.6.9",
