@@ -1,4 +1,4 @@
-# tagging mster
+# tagging-master
 
 用于图片标注
 - 支持绘制 矩形（Rect）、多边形（Polygon）、圆形（Circle）、椭圆形（Ellipse）、点（Dot）；后续考虑支持更多图形。
