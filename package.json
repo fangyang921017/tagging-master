@@ -1,0 +1,39 @@
+{
+  "name": "tagging-master",
+  "version": "1.0.2",
+  "description": "Label graphics in pictures",
+  "main": "./lib/bundle.min.js",
+  "typings": "./lib/index.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "build:watch": "rollup -c rollup.config.js --watch"
+  },
+  "keywords": [],
+  "author": "ivorfang",
+  "mail":"",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-json": "^4.1.0",
+    "@types/fabric": "^3.6.9",
+    "prettier": "^2.1.2",
+    "rollup": "^2.32.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-sourcemaps": "^0.6.3",
+    "rollup-plugin-typescript": "^1.0.1",
+    "tslib": "^2.0.3",
+    "typescript": "^4.0.5"
+  },
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "fabric": "^4.2.0",
+    "rollup-plugin-typescript2": "^0.29.0"
+  },
+  "publishConfig" : {
+    "registry" : "http://registry.npmjs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashleygwilliams/my_package.git"
+  }
+}
