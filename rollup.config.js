@@ -23,7 +23,7 @@ export default {
     {
       format: "umd",
       file: "lib/bundle.min.js",
-      name: "TaggingMaster",
+      name: "tm",
       sourcemap: true
     }
   ]
