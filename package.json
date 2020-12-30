@@ -1,6 +1,6 @@
 {
   "name": "tagging-master",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Label graphics in pictures",
   "main": "./lib/bundle.min.js",
   "typings": "./lib/index.d.ts",
@@ -30,6 +30,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fangyang921017/tagging-master.git"
+    "url": "http://10.200.103.133/fangyang/tagging-master.git"
   }
 }
