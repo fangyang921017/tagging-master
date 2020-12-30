@@ -1,6 +1,6 @@
 {
   "name": "tagging-master",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "description": "Label graphics in pictures",
   "main": "./lib/bundle.min.js",
   "typings": "./lib/index.d.ts",
@@ -27,9 +27,6 @@
     "canvas": "^2.6.1",
     "fabric": "^4.2.0",
     "rollup-plugin-typescript2": "^0.29.0"
-  },
-  "publishConfig" : {
-    "registry" : "http://registry.npmjs.org"
   },
   "repository": {
     "type": "git",
