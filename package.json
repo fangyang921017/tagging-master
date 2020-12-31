@@ -1,6 +1,6 @@
 {
   "name": "tagging-master",
-  "version": "0.0.2-0",
+  "version": "0.0.2",
   "description": "用于图片标注的插件",
   "main": "./lib/bundle.min.js",
   "typings": "./lib/index.d.ts",
