@@ -1,7 +1,7 @@
 {
   "name": "tagging-master",
-  "version": "1.0.9",
-  "description": "Label graphics in pictures",
+  "version": "1.1.0",
+  "description": "用于图片标注的插件",
   "main": "./lib/bundle.min.js",
   "typings": "./lib/index.d.ts",
   "scripts": {
