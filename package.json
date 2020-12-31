@@ -1,12 +1,13 @@
 {
   "name": "tagging-master",
-  "version": "0.0.1",
+  "version": "0.0.2-0",
   "description": "用于图片标注的插件",
   "main": "./lib/bundle.min.js",
   "typings": "./lib/index.d.ts",
   "scripts": {
     "build": "rollup -c",
-    "build:watch": "rollup -c rollup.config.js --watch"
+    "build:watch": "rollup -c rollup.config.js --watch",
+    "release": "standard-version"
   },
   "keywords": [],
   "author": "ivorfang",
@@ -20,6 +21,7 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "rollup-plugin-typescript": "^1.0.1",
+    "standard-version": "^9.1.0",
     "tslib": "^2.0.3",
     "typescript": "^4.0.5"
   },
