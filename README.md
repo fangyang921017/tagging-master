@@ -26,12 +26,12 @@ const options = {
   canvasId: 'canvas',
   tools: [
     {
-      name: 'uuid1';
-      type: 'rect';
+      name: 'uuid1',
+      type: 'rect'
     },
     {
-      name: 'uuid2';
-      type: 'polygon';
+      name: 'uuid2',
+      type: 'polygon'
     },
     ...
   ]
