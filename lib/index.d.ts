@@ -1,6 +1,6 @@
 import { fabric } from 'fabric';
 import { Canvas } from 'fabric/fabric-impl';
-import { DrawType, TaggingData } from './types';
+import { DrawType, TaggingData, GraphicJson } from './types';
 import { EventBus } from './EventBus';
 export * from './types';
 export declare type ToolOption = {
@@ -38,7 +38,7 @@ export declare class TaggingMaster extends EventBus {
     setTool(toolName: string): void;
     getCurrentToolName(): string;
     loadFromTaggingData(taggingData: TaggingData): Promise<void>;
-    getTaggingData(): import("./types").GraphicJson[];
+    getTaggingData(): GraphicJson[];
     showAll(): void;
     hideAll(): void;
     show(name: string): void;

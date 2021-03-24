@@ -7,6 +7,7 @@ export declare class PanzoomHandle {
     private _centerPositon;
     constructor(taggingMaster: TaggingMaster);
     private _resetCoords;
+    _isPressCtrlOrMetaKey(e: MouseEvent): boolean;
     mousedown(e: IEvent): void;
     mousemove(e: IEvent): void;
     mouseup(): void;

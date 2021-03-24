@@ -1,4 +1,4 @@
-import { MouseEventType, RectJson, EllipseJson, PolygonJson, CircleJson, DotJson, NoneJson } from './types';
+import { MouseEventType, GraphicJson } from './types';
 import { ToolOption, TaggingMaster } from '.';
 export declare class TaggingHandle {
     private _taggingMaster;
@@ -9,7 +9,7 @@ export declare class TaggingHandle {
     removeImpl(name: string): void;
     getMouseHandle(currentToolName: string, mouseEventType: MouseEventType): (e: import("fabric/fabric-impl").IEvent) => void;
     clearTaggingImplObject(): void;
-    loadJson(obj: RectJson | EllipseJson | PolygonJson | CircleJson | DotJson | NoneJson, offset: {
+    loadJson(obj: GraphicJson, offset: {
         offsetLeft: number;
         offsetTop: number;
     }): void;

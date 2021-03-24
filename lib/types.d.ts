@@ -5,7 +5,8 @@ export declare enum DrawType {
     Polygon = "polygon",
     Ellipse = "ellipse",
     Circle = "circle",
-    Dot = "dot"
+    Dot = "dot",
+    MultiRect = "multiRect"
 }
 export declare type MouseEventType = 'mousedown' | 'mousemove' | 'mouseup';
 export interface IbaseObject {
@@ -14,15 +15,16 @@ export interface IbaseObject {
     mouseup(e: IEvent): void;
     clear(): void;
 }
+declare type RectPosition = {
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+};
 export interface RectJson {
     name: string;
     type: DrawType.Rect;
-    position: {
-        x: number;
-        y: number;
-        w: number;
-        h: number;
-    };
+    position: RectPosition;
 }
 export interface PolygonJson {
     name: string;
@@ -62,8 +64,14 @@ export interface NoneJson {
     type: DrawType.None;
     position: {};
 }
-export declare type GraphicJson = RectJson | EllipseJson | PolygonJson | CircleJson | DotJson | NoneJson;
+export interface MultiRectJson {
+    name: string;
+    type: DrawType.MultiRect;
+    position: RectPosition[];
+}
+export declare type GraphicJson = RectJson | EllipseJson | PolygonJson | CircleJson | DotJson | MultiRectJson | NoneJson;
 export interface TaggingData {
     imgUrl: string;
     tagObjects: Array<GraphicJson>;
 }
+export {};
