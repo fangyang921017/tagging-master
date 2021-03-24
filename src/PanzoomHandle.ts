@@ -57,12 +57,14 @@ export class PanzoomHandle {
     }
   }
 
+  _isPressCtrlOrMetaKey (e: MouseEvent) {
+    return (isWindows() === true && e.ctrlKey === true) ||
+    (isMac() === true && e.metaKey === true)
+  }
+
   mousedown (e: IEvent) {
     const mouseEvent = e.e as MouseEvent;
-    if (
-      (isWindows() === true && mouseEvent.ctrlKey === true) ||
-      (isMac() === true && mouseEvent.metaKey === true)
-    ) {
+    if (this._isPressCtrlOrMetaKey(mouseEvent)) {
       this._canvas.setCursor('grabbing')
       this._isDragging = true;
       this._canvas.selection = false;
@@ -73,10 +75,7 @@ export class PanzoomHandle {
   mousemove (e: IEvent) {
     const mouseEvent = e.e as MouseEvent;
 
-    if (
-      (isWindows() === true && mouseEvent.ctrlKey === true) ||
-      (isMac() === true && mouseEvent.metaKey === true)
-    ) {
+    if (this._isPressCtrlOrMetaKey(mouseEvent)) {
       this._canvas.setCursor('grab')
     }
 
@@ -100,11 +99,8 @@ export class PanzoomHandle {
   }
 
   mousewheel (e: IEvent) {
-    const mouseWheelEvent = e.e as MouseWheelEvent;
-    if (
-      (isWindows() === true && mouseWheelEvent.ctrlKey === true) ||
-      (isMac() === true && mouseWheelEvent.metaKey === true)
-    ) {
+    const mouseWheelEvent = e.e as WheelEvent;
+    if (this._isPressCtrlOrMetaKey(mouseWheelEvent)) {
       mouseWheelEvent.preventDefault();
       mouseWheelEvent.stopPropagation();
       const delta = mouseWheelEvent.deltaY;

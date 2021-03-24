@@ -35,6 +35,7 @@ export abstract class DragObjectImpl extends BaseObjectImpl {
   public mouseup () {
     if (this.isDrawing && this.hasMoved) {
       this.taggingMaster.emit('tagging:finish', this.name)
+      this.taggingMaster.emit('modified')
     }
     this.isDrawing = false;
     this.hasMoved = false;

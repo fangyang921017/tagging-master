@@ -1,4 +1,4 @@
-import { DrawType, MouseEventType, RectJson, EllipseJson, PolygonJson, CircleJson, DotJson, NoneJson } from './types';
+import { DrawType, MouseEventType, GraphicJson } from './types';
 import { BaseObjectImpl } from './BaseObjectImpl';
 import { RectImpl } from './RectImpl';
 import { PolygonImpl } from './PolygonImpl';
@@ -7,6 +7,7 @@ import { CircleImpl } from './CircleImpl';
 import { DotImpl } from './DotImpl';
 import { NoneImpl } from './NoneImpl';
 import { ToolOption, TaggingMaster } from '.';
+import { MultiRectImpl } from './MultiRectImpl';
 
 export class TaggingHandle {
   private readonly _taggingImplObjectMap: Map<string, BaseObjectImpl> = new Map();
@@ -17,6 +18,7 @@ export class TaggingHandle {
     [DrawType.Ellipse]: EllipseImpl,
     [DrawType.Circle]: CircleImpl,
     [DrawType.Dot]: DotImpl,
+    [DrawType.MultiRect]: MultiRectImpl,
     [DrawType.None]: NoneImpl
   }
 
@@ -45,7 +47,7 @@ export class TaggingHandle {
   }
 
   public loadJson (
-    obj: RectJson | EllipseJson | PolygonJson | CircleJson | DotJson | NoneJson,
+    obj: GraphicJson,
     offset: {offsetLeft: number; offsetTop: number}
   ) {
     const taggingImplObj = this._taggingImplObjectMap.get(obj.name);

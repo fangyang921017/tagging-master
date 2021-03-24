@@ -3,12 +3,7 @@ import { Canvas, Image, Polygon, Circle, IEvent } from 'fabric/fabric-impl';
 import {
   DrawType,
   TaggingData,
-  RectJson,
-  EllipseJson,
-  PolygonJson,
-  CircleJson,
-  DotJson,
-  NoneJson
+  GraphicJson
 } from './types';
 import { TaggingHandle } from './TaggingHandle';
 import { PanzoomHandle } from './PanzoomHandle';
@@ -89,6 +84,9 @@ export class TaggingMaster extends EventBus {
     }
     this._bindPanzoomHandle();
     this._disableSelectGroup()
+    this.canvas.on('object:modified', () => {
+      this.emit('modified')
+    })
   }
 
   private _disableSelectGroup () {
@@ -189,7 +187,7 @@ export class TaggingMaster extends EventBus {
   }
 
   getTaggingData () {
-    const taggingData: Array<RectJson | EllipseJson | PolygonJson | CircleJson | DotJson | NoneJson> = [];
+    const taggingData: GraphicJson[] = [];
 
     const objects = this.canvas.getObjects();
     const imgLeft = this._currentImgObject!.get('left')!;
@@ -197,10 +195,13 @@ export class TaggingMaster extends EventBus {
 
     const dots: fabric.Object[] = [];
     const others: fabric.Object[] = [];
+    const multiRects: fabric.Object[] = [];
 
     objects.forEach(o => {
-      if (o.name && o.name!.startsWith('dot:')) {
+      if (o.name && o.name.startsWith('dot:')) {
         dots.push(o)
+      } else if (o.name && o.name.startsWith('multiRect:')) {
+        multiRects.push(o)
       } else {
         others.push(o)
       }
@@ -216,6 +217,21 @@ export class TaggingMaster extends EventBus {
       position: {
         points
       }
+    })
+
+    // 多框
+    multiRects.length && taggingData.push({
+      name: multiRects[0].name?.slice(10) || '',
+      type: DrawType.MultiRect,
+      position: multiRects.map(rect => {
+        const { scaleX, scaleY } = rect.getObjectScaling()
+        return {
+          x: rect.get('left')! - imgLeft,
+          y: rect.get('top')! - imgTop,
+          w: rect.get('width')! * scaleX,
+          h: rect.get('height')! * scaleY!
+        }
+      })
     })
 
     // 其他
@@ -308,7 +324,8 @@ export class TaggingMaster extends EventBus {
     this.canvas.getObjects().forEach(o => {
       if (
         o.name === name ||
-        (o.name && o.name.slice(4) === name) // dot: 应该比对
+        (o.name && o.name.slice(4) === name) || // dot: 应该比对
+        (o.name && o.name.slice(10) === name) // multiRect: 应该比对
       ) {
         o.set('visible', true)
       }
@@ -321,7 +338,8 @@ export class TaggingMaster extends EventBus {
     this.canvas.getObjects().forEach(o => {
       if (
         o.name === name ||
-        (o.name && o.name.slice(4) === name) // dot: 应该比对
+        (o.name && o.name.slice(4) === name) || // dot: 应该比对
+        (o.name && o.name.slice(10) === name) // multiRect: 应该比对
       ) {
         o.set('visible', false)
       }

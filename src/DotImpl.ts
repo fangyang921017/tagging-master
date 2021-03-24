@@ -36,6 +36,7 @@ export class DotImpl extends BaseObjectImpl {
     this.implObjectForDots.push(dot)
 
     this.taggingMaster.emit('tagging:finish', this.name)
+    this.taggingMaster.emit('modified')
   };
 
   public mousemove () {}
