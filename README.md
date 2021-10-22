@@ -41,8 +41,8 @@ const tm = new TaggingMaster(options);
 
 tm.loadImage(imageUrl);
 
-tgm.setTool('uuid1') //在图片上画矩形
-tgm.setTool('uuid2') //在图片上画多边形
+tm.setTool('uuid1') //在图片上画矩形
+tm.setTool('uuid2') //在图片上画多边形
 
 ```
 
