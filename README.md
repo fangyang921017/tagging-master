@@ -53,7 +53,7 @@ enum DrawType {
   Polygon = 'polygon',
   Ellipse = 'ellipse',
   Circle = 'circle',
-  MultiRect = 'multiRect'
+  MultiRect = 'multiRect',
   Dot = 'dot'
 }
 
